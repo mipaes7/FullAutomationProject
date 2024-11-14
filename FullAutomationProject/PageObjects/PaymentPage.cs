@@ -71,8 +71,6 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnConfirmOrder()
         {
             ClickOnElement(payAndConfirmOrderBtn);
-            Thread.Sleep(2000);
-            VerifyElementIsVisibleByLocator(succesfulPaymentALert);
         }
 
         public void VerifySuccesfulPaymentAlert(string msg)

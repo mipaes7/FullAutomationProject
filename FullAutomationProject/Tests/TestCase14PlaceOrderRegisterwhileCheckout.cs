@@ -28,8 +28,8 @@ namespace FullAutomationProject.Tests
 
             UserDetailsBuilder userDetailsBuilder = new UserDetailsBuilder();
             UserDetails user = userDetailsBuilder
-                .WithName("janesmith1112")
-                .WithEmail("jane.smith2111@example.com")
+                .WithName("janesmith124")
+                .WithEmail("jane.smith241@example.com")
                 .WithPassword("mySecurePassword456")
                 .WithDayOfBirth("22")
                 .WithMonthOfBirth("March")
