@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using FullAutomationProject.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -15,6 +16,12 @@ namespace FullAutomationProject.PageObjects
         public readonly By productInfoDetails;
         public readonly By productQuantityInput;
         public readonly By addToCartBtn;
+        public readonly By productReviewContainer;
+        public readonly By productReviewNameInput;
+        public readonly By productReviewEmailInput;
+        public readonly By productReviewReviewInput;
+        public readonly By submitReviewBtn;
+        public readonly By reviewSuccessAlert;
 
         public ProductDetailsPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -26,6 +33,12 @@ namespace FullAutomationProject.PageObjects
             this.productInfoDetails = By.XPath("//div[@class='product-information'] /*");
             this.productQuantityInput = By.CssSelector("input[name='quantity']");
             this.addToCartBtn = By.CssSelector("div[class='product-information'] button");
+            this.productReviewContainer = By.CssSelector("div[class='category-tab shop-details-tab']");
+            this.productReviewNameInput = By.CssSelector("form[id='review-form'] input[id='name']");
+            this.productReviewEmailInput = By.CssSelector("form[id='review-form'] input[id='email']");
+            this.productReviewReviewInput = By.CssSelector("form[id='review-form'] textarea");
+            this.submitReviewBtn = By.Id("button-review");
+            this.reviewSuccessAlert = By.CssSelector("div[class='category-tab shop-details-tab'] div[class='alert-success alert']");
         }
 
         public void VerifyProductDetailsPageUrl()
@@ -52,6 +65,48 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnAddToCart()
         {
             ClickOnElement(addToCartBtn);
+        }
+
+        public void VerifyReviewContainerIsVisible()
+        {
+            VerifyElementIsVisibleByLocator(productReviewContainer);
+        }
+
+        public By GetReviewInputField(ReviewFields field)
+        {
+            By inputField = null;
+
+            switch(field)
+            {
+                case ReviewFields.Name:
+                    inputField = productReviewNameInput;
+                    break;
+                case ReviewFields.EmailAddress:
+                    inputField = productReviewEmailInput;
+                    break;
+                case ReviewFields.Review:
+                    inputField = productReviewReviewInput;
+                    break;
+            }
+
+            return inputField;
+        }
+
+        public void FillReviewForm(ReviewFields input, string text)
+        {
+            By field = GetReviewInputField(input);
+
+            WriteOnElement(field, text);
+        }
+
+        public void ClickOnSubmitReview()
+        {
+            ClickOnElement(submitReviewBtn);
+        }
+
+        public void VerifyReviewSuccesAlertIsVisible()
+        {
+            VerifyElementIsVisibleByLocator(reviewSuccessAlert);
         }
     }
 }
