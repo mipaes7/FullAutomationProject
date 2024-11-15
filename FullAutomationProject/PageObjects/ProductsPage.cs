@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FullAutomationProject.PageObjects
@@ -21,6 +22,9 @@ namespace FullAutomationProject.PageObjects
         public readonly By onHoverAddToCartBtn;
         public readonly By addedToCartModalDiscardBtn;
         public readonly By viewCartBtn;
+        public readonly By brandsTitlesContainer;
+        public readonly By brandsList;
+        public string brandName = "";
 
         public ProductsPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -36,6 +40,8 @@ namespace FullAutomationProject.PageObjects
             this.onHoverAddToCartBtn = By.CssSelector("div[class='overlay-content'] a[class='btn btn-default add-to-cart']");
             this.addedToCartModalDiscardBtn = By.CssSelector("div[class='modal-content'] button");
             this.viewCartBtn = By.CssSelector("div[class='modal-content'] a[href='/view_cart']");
+            this.brandsTitlesContainer = By.CssSelector("div[class='brands_products']");
+            this.brandsList = By.CssSelector("div[class='brands_products'] ul li a");
         }
 
         public void VerifyProductsPageUrl()
@@ -79,7 +85,6 @@ namespace FullAutomationProject.PageObjects
         {
             IList<IWebElement> products = driver.FindElements(productsList);
             HoverOverElement(products[index - 1]);
-            //VerifyElementIsVisibleByLocator(onHoverAddToCartBtn);
             products[index - 1].FindElement(onHoverAddToCartBtn).Click();
         }
 
@@ -89,5 +94,28 @@ namespace FullAutomationProject.PageObjects
             ClickOnElement(addedToCartModalDiscardBtn);
         }
 
+        public void VerifyBrandsTitlesContainerIsVisible()
+        {
+            VerifyElementIsVisibleByLocator(brandsTitlesContainer);
+        }
+
+        public void AccessRandomBrand()
+        {
+            Random random = new Random();
+
+            IList<IWebElement> brands = driver.FindElements(brandsList);
+
+            int index = random.Next(0, brands.Count);
+
+            string pattern = @"\(\d+\)";
+
+            brandName = Regex.Replace(brands[index].Text, pattern, "").Trim();
+            brands[index].Click();
+        }
+
+        public void VerifyBrandTitle()
+        {
+            ValidateMsg(productSearchTitle, brandName);
+        }
     }
 }
