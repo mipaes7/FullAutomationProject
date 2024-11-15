@@ -86,7 +86,7 @@ namespace FullAutomationProject
 
         public void ValidateUrl(string url)
         {
-            driver.Url.Contains(url);
+            Assert.That(driver.Url, Does.Contain(url));
         }
 
         public void ScrollToElementByLocator(By locator)

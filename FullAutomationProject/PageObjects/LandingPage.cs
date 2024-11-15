@@ -27,6 +27,10 @@ namespace FullAutomationProject.PageObjects
         public readonly By subscriptionEmailSubmitBtn;
         public readonly By subscriptionAlert;
         public readonly By goToCartBtn;
+        public readonly By categoriesContainer;
+        public readonly By categoryTitle;
+        public readonly By categoryAccordion;
+        public readonly By categoryAccordionItems;
 
         public LandingPage(IWebDriver driver, WebDriverWait wait, Actions actions) 
         {
@@ -48,6 +52,10 @@ namespace FullAutomationProject.PageObjects
             this.subscriptionEmailInput = By.CssSelector("footer input[type='email']");
             this.subscriptionEmailSubmitBtn = By.CssSelector("footer button");
             this.subscriptionAlert = By.Id("success-subscribe");
+            this.categoriesContainer = By.CssSelector("div[class='panel-group category-products']");
+            this.categoryTitle = By.CssSelector("div[id='accordian'] div[class='panel panel-default'] h4 a");
+            this.categoryAccordion = By.CssSelector("div[class='panel-collapse in']");
+            this.categoryAccordionItems = By.CssSelector("div[class='panel-collapse in'] li a");
         }
 
         public void ClickOnConsentBtn()
@@ -123,6 +131,40 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnCartBtn()
         {
             ClickOnElement(goToCartBtn);
+        }
+
+        public void VerifyCategoriesContainerIsVisible()
+        {
+            VerifyElementIsVisibleByLocator(categoriesContainer);
+        }
+
+        public void ClickOnCategoryByTitle(string title)
+        {
+            IList<IWebElement> categoriesList = driver.FindElements(categoryTitle);
+            foreach (IWebElement category in categoriesList)
+            {
+                if (category.Text.Contains(title))
+                {
+                    actions.MoveToElement(category).Perform();
+                    category.Click();
+                    break;
+                }
+            }
+
+            VerifyElementIsVisibleByLocator(categoryAccordion);
+        }
+
+        public void ClickOnAccordionItemByName(string name)
+        {
+            IList<IWebElement> accordionItemsList = driver.FindElements(categoryAccordionItems);
+            foreach (IWebElement item in accordionItemsList)
+            {
+                if (item.Text.Contains(name))
+                {
+                    item.Click();
+                    break;
+                }
+            }
         }
     }
 }
