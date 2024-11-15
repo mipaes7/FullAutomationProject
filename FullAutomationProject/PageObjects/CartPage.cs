@@ -18,6 +18,8 @@ namespace FullAutomationProject.PageObjects
         public readonly By productPrice;
         public readonly By productTotal;
         public readonly By proceedToCheckoutBtn;
+        public readonly By productDescription;
+        public readonly By deleteFromCartBtn;
 
         public CartPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -29,6 +31,8 @@ namespace FullAutomationProject.PageObjects
             this.productPrice = By.CssSelector("td[class='cart_price']");
             this.productTotal = By.CssSelector("td[class='cart_total']");
             this.proceedToCheckoutBtn = By.CssSelector("a[class='btn btn-default check_out']");
+            this.productDescription = By.CssSelector("td[class='cart_description']");
+            this.deleteFromCartBtn = By.CssSelector("a[class='cart_quantity_delete']");
         }
 
         public void VerifyCartUrl()
@@ -71,6 +75,32 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnProceedToCheckout()
         {
             ClickOnElement(proceedToCheckoutBtn);
+        }
+
+        public void DeleteItemFromCartByName(string itemName)
+        {
+            IList<IWebElement> productsInCart = driver.FindElements(cartProdcutsList);
+            foreach(IWebElement product in productsInCart)
+            {
+                string productName = product.FindElement(productDescription).Text;
+                IWebElement deleteItemBtn = product.FindElement(deleteFromCartBtn);
+                if (productName.Contains(itemName))
+                {
+                    deleteItemBtn.Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(By.XPath($"//*[contains(text(), '{itemName}')]")));
+                    break;
+                }
+            }
+        }
+
+        public void VerifyItemNotOnCartByName(string itemName)
+        {
+            IList<IWebElement> productsInCart = driver.FindElements(cartProdcutsList);
+            foreach (IWebElement product in productsInCart)
+            {
+                string productName = product.FindElement(productDescription).Text;
+                Assert.That(productName, Does.Not.Contain(itemName));
+            }
         }
     }
 }
