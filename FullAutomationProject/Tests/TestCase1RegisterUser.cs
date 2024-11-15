@@ -24,7 +24,7 @@ namespace FullAutomationProject.Tests
             UserDetails user = userDetailsBuilder
                 .WithName("username")
                 .WithEmail("email1@email")
-                .WithPassword("securePassword123")
+                .WithPassword("123456")
                 .WithDayOfBirth("15")
                 .WithMonthOfBirth("September")
                 .WithYearOfBirth("1990")
@@ -33,7 +33,7 @@ namespace FullAutomationProject.Tests
                 .WithCompany("Example Corp")
                 .WithAddress("123 Main St")
                 .WithAddress2("Apt 4B")
-                .WithCountry("USA")
+                .WithCountry("United States")
                 .WithState("New York")
                 .WithCity("New York")
                 .WithZipCode("10001")
@@ -60,7 +60,6 @@ namespace FullAutomationProject.Tests
             registerPage.VerifyRegistrationBannerIsVisible();
 
             //Fill details: Title, Name, Email, Password, Date of birth
-            //CREAR BUILDER
             registerPage.ClickGenderRadio();
             registerPage.FillRegistrationForm(AccountInfoFields.Password, user.Password);
             registerPage.FillRegistrationForm(AccountInfoFields.DayofBirth, user.DayOfBirth);
@@ -72,7 +71,6 @@ namespace FullAutomationProject.Tests
             registerPage.ClickSignUpCheckBoxes();
 
             //Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
-            //CREAR BUILDER
             registerPage.FillRegistrationForm(AccountInfoFields.FirstName, user.FirstName);
             registerPage.FillRegistrationForm(AccountInfoFields.LastName, user.LastName);
             registerPage.FillRegistrationForm(AccountInfoFields.Company, user.Company);

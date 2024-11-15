@@ -25,6 +25,7 @@ namespace FullAutomationProject.PageObjects
         public readonly By brandsTitlesContainer;
         public readonly By brandsList;
         public string brandName = "";
+        public int itemCount = 0;
 
         public ProductsPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -117,5 +118,19 @@ namespace FullAutomationProject.PageObjects
         {
             ValidateMsg(productSearchTitle, brandName);
         }
+
+        public void AddAllProductsToCart()
+        {
+            IList<IWebElement> products = driver.FindElements(productsList);
+            itemCount = products.Count;
+            foreach (IWebElement product in products)
+            {
+                HoverOverElement(product);
+                HoverOverElement(product.FindElement(onHoverAddToCartBtn));
+                product.FindElement(onHoverAddToCartBtn).Click();
+                DiscardModal();
+            }
+        }
+
     }
 }
