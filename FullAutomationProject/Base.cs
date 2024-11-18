@@ -106,5 +106,12 @@ namespace FullAutomationProject
             scriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
         }
 
+        public void ScrollToTop()
+        {
+            IJavaScriptExecutor scriptExecutor = (IJavaScriptExecutor)driver;
+
+            scriptExecutor.ExecuteScript("window.scrollTo(0, 0);");
+        }
+
     }
 }
