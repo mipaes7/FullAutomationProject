@@ -11,7 +11,7 @@ namespace FullAutomationProject.Tests
     internal class TestCase4LogoutUserTest : Base
     {
         [TestCase(TestName = "TestCase4LogoutUser")]
-        public async Task TestCase4LogoutUser()
+        public void TestCase4LogoutUser()
         {
             LandingPage landingPage = new LandingPage(driver, wait, actions);
             AuthPage authPage = new AuthPage(driver, wait, actions);

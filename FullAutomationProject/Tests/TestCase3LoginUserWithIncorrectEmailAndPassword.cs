@@ -11,7 +11,7 @@ namespace FullAutomationProject.Tests
     internal class TestCase3LoginUserWithIncorrectEmailAndPasswordTest : Base
     {
         [TestCase(TestName = "TestCase3LoginUserWithIncorrectEmailAndPassword")]
-        public async Task TestCase3LoginUserWithIncorrectEmailAndPassword()
+        public void TestCase3LoginUserWithIncorrectEmailAndPassword()
         {
             LandingPage landingPage = new LandingPage(driver, wait, actions);
             AuthPage authPage = new AuthPage(driver, wait, actions);

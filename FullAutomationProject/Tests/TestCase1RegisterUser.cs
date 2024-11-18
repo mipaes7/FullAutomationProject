@@ -12,7 +12,7 @@ namespace FullAutomationProject.Tests
     class TestCase1RegisterUserTest : Base
     {
         [TestCase(TestName = "TestCase1RegisterUser")]
-        public async Task TestCase1RegisterUser()
+        public void TestCase1RegisterUser()
         {
             LandingPage landingPage = new LandingPage(driver, wait, actions);
             AuthPage authPage = new AuthPage(driver, wait, actions);

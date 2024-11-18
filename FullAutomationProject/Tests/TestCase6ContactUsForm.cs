@@ -13,7 +13,7 @@ namespace FullAutomationProject.Tests
 
         [TestCase(TestName = "TestCase6ContactUsForm")]
 
-        public async Task TestCase6ContactUsForm()
+        public void TestCase6ContactUsForm()
         {
             LandingPage landingPage = new LandingPage(driver, wait, actions);
             AuthPage authPage = new AuthPage(driver, wait, actions);
