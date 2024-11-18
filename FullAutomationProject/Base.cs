@@ -91,7 +91,7 @@ namespace FullAutomationProject
 
         public void ScrollToElementByLocator(By locator)
         {
-            actions.ScrollToElement(Find(locator));
+            actions.ScrollToElement(Find(locator)).Perform();
         }
 
         public void HoverOverElement(IWebElement element)

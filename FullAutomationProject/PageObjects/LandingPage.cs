@@ -31,6 +31,11 @@ namespace FullAutomationProject.PageObjects
         public readonly By categoryTitle;
         public readonly By categoryAccordion;
         public readonly By categoryAccordionItems;
+        public readonly By recommendedProducts;
+        public readonly By recommendedProductsList;
+        public readonly By recommendedProductsAddToCartBtn;
+        public readonly By recommendedProductsName;
+        public readonly By recommendProductsCarouselRightArrowBtn;
 
         public LandingPage(IWebDriver driver, WebDriverWait wait, Actions actions) 
         {
@@ -56,6 +61,11 @@ namespace FullAutomationProject.PageObjects
             this.categoryTitle = By.CssSelector("div[id='accordian'] div[class='panel panel-default'] h4 a");
             this.categoryAccordion = By.CssSelector("div[class='panel-collapse in']");
             this.categoryAccordionItems = By.CssSelector("div[class='panel-collapse in'] li a");
+            this.recommendedProducts = By.CssSelector("div[class='recommended_items']");
+            this.recommendedProductsList = By.CssSelector("div[class='recommended_items'] div[class='single-products']");
+            this.recommendedProductsAddToCartBtn = By.CssSelector("a[class='btn btn-default add-to-cart']");
+            this.recommendedProductsName = By.CssSelector("div[class='productinfo text-center'] p");
+            this.recommendProductsCarouselRightArrowBtn = By.CssSelector("a[class='right recommended-item-control']");
         }
 
         public void ClickOnConsentBtn()
@@ -165,6 +175,43 @@ namespace FullAutomationProject.PageObjects
                     break;
                 }
             }
+        }
+
+        public void ScrollToRecommendedProducts()
+        {
+            ScrollToElementByLocator(recommendedProducts);
+        }
+
+        public void VerifyRecommendedProductsIsVisible()
+        {
+            VerifyElementIsVisibleByLocator(recommendedProducts);
+        }
+
+        public void AddRecommendedProductByName(string name)
+        {
+            int maxScrollAttempts = 3;
+            int scrollCount = 0;
+
+            while (scrollCount < maxScrollAttempts)
+            {
+                IList<IWebElement> recommendedProducts = driver.FindElements(recommendedProductsList);
+
+                foreach (IWebElement product in recommendedProducts)
+                {
+                    string productName = product.FindElement(recommendedProductsName).Text;
+
+                    if (productName.Contains(name))
+                    {
+                        IWebElement addToCartBtn = product.FindElement(recommendedProductsAddToCartBtn);
+                        addToCartBtn.Click();
+                        return;
+                    }
+                }
+
+                ClickOnElement(recommendProductsCarouselRightArrowBtn);
+                scrollCount++;
+            }
+
         }
     }
 }

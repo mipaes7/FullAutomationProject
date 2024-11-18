@@ -93,6 +93,16 @@ namespace FullAutomationProject.PageObjects
             }
         }
 
+        public void VerifyItemOnCartByName(string itemName)
+        {
+            IList<IWebElement> productsInCart = driver.FindElements(cartProdcutsList);
+            foreach (IWebElement product in productsInCart)
+            {
+                string productName = product.FindElement(productDescription).Text;
+                Assert.That(productName, Does.Contain(itemName));
+            }
+        }
+
         public void VerifyItemNotOnCartByName(string itemName)
         {
             IList<IWebElement> productsInCart = driver.FindElements(cartProdcutsList);
