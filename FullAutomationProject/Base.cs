@@ -99,5 +99,12 @@ namespace FullAutomationProject
             actions.MoveToElement(element).Perform();
         }
 
+        public void ScrollToBottom()
+        {
+            IJavaScriptExecutor scriptExecutor = (IJavaScriptExecutor)driver;
+
+            scriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+        }
+
     }
 }

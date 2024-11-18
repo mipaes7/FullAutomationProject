@@ -21,6 +21,8 @@ namespace FullAutomationProject.PageObjects
         public readonly By cardExpirationYYYYInput;
         public readonly By payAndConfirmOrderBtn;
         public readonly By succesfulPaymentALert;
+        public readonly By downloadInvoiceBtn;
+        public readonly By continueBtn;
 
         public PaymentPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -34,6 +36,8 @@ namespace FullAutomationProject.PageObjects
             this.cardExpirationYYYYInput = By.CssSelector("input[name='expiry_year']");
             this.payAndConfirmOrderBtn = By.CssSelector("button[id='submit']");
             this.succesfulPaymentALert = By.CssSelector("div[class='payment-information'] div[class='alert-success alert']");
+            this.downloadInvoiceBtn = By.CssSelector("a[class='btn btn-default check_out']");
+            this.continueBtn = By.CssSelector("a[href='btn btn-primary']");
         }
 
         public By GetCreditCardInput(CreditCardFields field)
@@ -77,6 +81,16 @@ namespace FullAutomationProject.PageObjects
         {
             VerifyElementIsVisibleByLocator(succesfulPaymentALert);
             ValidateMsg(succesfulPaymentALert, msg);
+        }
+
+        public void DownloadInvoice()
+        {
+            ClickOnElement(downloadInvoiceBtn);
+        }
+
+        public void ClickOnContinueBtn()
+        {
+            ClickOnElement(continueBtn);
         }
 
     }

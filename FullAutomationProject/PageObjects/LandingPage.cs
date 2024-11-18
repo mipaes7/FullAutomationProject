@@ -36,6 +36,8 @@ namespace FullAutomationProject.PageObjects
         public readonly By recommendedProductsAddToCartBtn;
         public readonly By recommendedProductsName;
         public readonly By recommendProductsCarouselRightArrowBtn;
+        public readonly By goUpArrowBtn;
+        public readonly By carouselSubtitle;
 
         public LandingPage(IWebDriver driver, WebDriverWait wait, Actions actions) 
         {
@@ -66,6 +68,8 @@ namespace FullAutomationProject.PageObjects
             this.recommendedProductsAddToCartBtn = By.CssSelector("a[class='btn btn-default add-to-cart']");
             this.recommendedProductsName = By.CssSelector("div[class='productinfo text-center'] p");
             this.recommendProductsCarouselRightArrowBtn = By.CssSelector("a[class='right recommended-item-control']");
+            this.goUpArrowBtn = By.Id("scrollUp");
+            this.carouselSubtitle = By.CssSelector("div[id='slider-carousel'] h2");
         }
 
         public void ClickOnConsentBtn()
