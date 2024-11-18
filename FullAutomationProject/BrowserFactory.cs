@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace FullAutomationProject
             {
                 case "Chrome":
                     var chromeOptions = new ChromeOptions();
+                    chromeOptions.AddUserProfilePreference("download.default_directory", @"C:\Users\MPardal\Downloads");
+                    chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
+                    chromeOptions.AddUserProfilePreference("safebrowsing.enabled", true);
+                    chromeOptions.AddUserProfilePreference("plugins.always_open_pdf_externally", true);
+                    chromeOptions.AddUserProfilePreference("profile.default_content_settings.popups", 0);
                     chromeOptions.BinaryLocation = bravePath;
                     driver = new ChromeDriver(chromeOptions);
                     break;

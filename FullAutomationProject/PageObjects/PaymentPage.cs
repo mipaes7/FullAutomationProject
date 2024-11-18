@@ -37,7 +37,7 @@ namespace FullAutomationProject.PageObjects
             this.payAndConfirmOrderBtn = By.CssSelector("button[id='submit']");
             this.succesfulPaymentALert = By.CssSelector("div[class='payment-information'] div[class='alert-success alert']");
             this.downloadInvoiceBtn = By.CssSelector("a[class='btn btn-default check_out']");
-            this.continueBtn = By.CssSelector("a[href='btn btn-primary']");
+            this.continueBtn = By.CssSelector("a[class='btn btn-primary']");
         }
 
         public By GetCreditCardInput(CreditCardFields field)
@@ -91,6 +91,11 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnContinueBtn()
         {
             ClickOnElement(continueBtn);
+        }
+
+        public bool IsFileDownloaded(string directory, string fileName)
+        {
+            return File.Exists(Path.Combine(directory, fileName));
         }
 
     }

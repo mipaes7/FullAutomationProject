@@ -139,12 +139,14 @@ namespace FullAutomationProject.Tests
 
             //Click 'Download Invoice' button and verify invoice is downloaded successfully
             paymentPage.DownloadInvoice();
+            paymentPage.IsFileDownloaded(@"C:\Users\MPardal\Downloads", "invoice");
 
             //Click 'Continue' button
             ClickOnElement(paymentPage.continueBtn);
 
             //Click 'Delete Account' button
             landingPage.ClickOnDeleteAccBtn();
+            //ClickOnElement(landingPage.deleteAccBtn);
 
             //Verify 'ACCOUNT DELETED!' and click 'Continue' button
             deletedAccPage.VerifyDeletedAccMsgIsVisible();
