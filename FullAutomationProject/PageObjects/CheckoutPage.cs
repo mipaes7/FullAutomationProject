@@ -22,6 +22,13 @@ namespace FullAutomationProject.PageObjects
         public readonly By invoicePhone;
         public readonly By orderCommentary;
         public readonly By placeOrderBtn;
+        public readonly By addressInfoName;
+        public readonly By addressInfoCompany;
+        public readonly By addressInfoAddress1;
+        public readonly By addressInfoAddress2;
+        public readonly By addressInfoFullAddress;
+        public readonly By addressInfoCountry;
+        public readonly By addressInfoPhone;
 
         public CheckoutPage(IWebDriver driver, WebDriverWait wait, Actions actions)
         {
@@ -37,6 +44,13 @@ namespace FullAutomationProject.PageObjects
             this.invoicePhone = By.CssSelector("ul[id='address_invoice'] li:nth-child(8)");
             this.orderCommentary = By.CssSelector("textarea");
             this.placeOrderBtn = By.CssSelector("a[href='/payment']");
+            this.addressInfoName = By.CssSelector("ul[id='address_delivery'] li:nth-child(2)");
+            this.addressInfoCompany = By.CssSelector("ul[id='address_delivery'] li:nth-child(3)");
+            this.addressInfoAddress1 = By.CssSelector("ul[id='address_delivery'] li:nth-child(4)");
+            this.addressInfoAddress2 = By.CssSelector("ul[id='address_delivery'] li:nth-child(5)");
+            this.addressInfoFullAddress = By.CssSelector("ul[id='address_delivery'] li:nth-child(6)");
+            this.addressInfoCountry = By.CssSelector("ul[id='address_delivery'] li:nth-child(7)");
+            this.addressInfoPhone = By.CssSelector("ul[id='address_delivery'] li:nth-child(8)");
         }
 
         public By GetInvoiceField(CheckoutAddressInfoFields field)
@@ -86,6 +100,45 @@ namespace FullAutomationProject.PageObjects
         public void ClickOnPlaceOrder()
         {
             ClickOnElement(placeOrderBtn);
+        }
+
+        public By GetAddressInfoField(CheckoutAddressInfoFields field)
+        {
+            By infoField = null;
+
+            switch (field)
+            {
+                case CheckoutAddressInfoFields.Fullname:
+                    infoField = addressInfoName;
+                    break;
+                case CheckoutAddressInfoFields.Company:
+                    infoField = addressInfoCompany;
+                    break;
+                case CheckoutAddressInfoFields.Address1:
+                    infoField = addressInfoAddress1;
+                    break;
+                case CheckoutAddressInfoFields.Address2:
+                    infoField = addressInfoAddress2;
+                    break;
+                case CheckoutAddressInfoFields.FullAddress:
+                    infoField = addressInfoFullAddress;
+                    break;
+                case CheckoutAddressInfoFields.Country:
+                    infoField = addressInfoCountry;
+                    break;
+                case CheckoutAddressInfoFields.Phone:
+                    infoField = addressInfoPhone;
+                    break;
+            }
+
+            return infoField;
+        }
+
+        public void VerifyCheckoutAddressInfo(CheckoutAddressInfoFields field, string text)
+        {
+            By invoiceField = GetAddressInfoField(field);
+
+            ValidateMsg(invoiceField, text);
         }
     }
 }
