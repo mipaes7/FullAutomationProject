@@ -27,7 +27,6 @@ namespace FullAutomationProject.PageObjects
         public void VerifyCreatedAccountBannerIsVisible(string msg = "ACCOUNT CREATED!")
         {
             VerifyElementIsVisibleByLocator(createdAccBanner);
-            TestContext.Progress.WriteLine(driver.FindElement(createdAccBanner).Text);
             ValidateMsg(createdAccBanner, msg);
         }
 

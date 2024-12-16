@@ -20,7 +20,7 @@ namespace FullAutomationProject.PageObjects
         public readonly By cardExpirationMMInput;
         public readonly By cardExpirationYYYYInput;
         public readonly By payAndConfirmOrderBtn;
-        public readonly By succesfulPaymentALert;
+        public readonly By successfulPaymentAlert;
         public readonly By downloadInvoiceBtn;
         public readonly By continueBtn;
 
@@ -35,7 +35,7 @@ namespace FullAutomationProject.PageObjects
             this.cardExpirationMMInput = By.CssSelector("input[name='expiry_month']");
             this.cardExpirationYYYYInput = By.CssSelector("input[name='expiry_year']");
             this.payAndConfirmOrderBtn = By.CssSelector("button[id='submit']");
-            this.succesfulPaymentALert = By.CssSelector("div[class='payment-information'] div[class='alert-success alert']");
+            this.successfulPaymentAlert = By.CssSelector("div[class='payment-information'] div[class='alert-success alert']");
             this.downloadInvoiceBtn = By.CssSelector("a[class='btn btn-default check_out']");
             this.continueBtn = By.CssSelector("a[class='btn btn-primary']");
         }
@@ -77,10 +77,11 @@ namespace FullAutomationProject.PageObjects
             ClickOnElement(payAndConfirmOrderBtn);
         }
 
-        public void VerifySuccesfulPaymentAlert(string msg)
+
+        public void VerifySuccessfulPaymentAlert(string msg)
         {
-            VerifyElementIsVisibleByLocator(succesfulPaymentALert);
-            ValidateMsg(succesfulPaymentALert, msg);
+            VerifyElementIsVisibleByLocator(successfulPaymentAlert);
+            ValidateMsg(successfulPaymentAlert, msg);
         }
 
         public void DownloadInvoice()

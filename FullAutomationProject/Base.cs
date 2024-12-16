@@ -24,6 +24,7 @@ namespace FullAutomationProject
             driver = BrowserFactory.InitWebBrowser(browserName);
             driver.Manage().Window.Maximize();
             driver.Url = "https://automationexercise.com";
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             actions = new Actions(driver);
         }

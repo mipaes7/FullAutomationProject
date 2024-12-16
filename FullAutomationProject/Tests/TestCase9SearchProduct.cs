@@ -16,7 +16,6 @@ namespace FullAutomationProject.Tests
         {
             LandingPage landingPage = new LandingPage(driver, wait, actions);
             ProductsPage productsPage = new ProductsPage(driver, wait, actions);
-            ProductDetailsPage productDetailsPage = new ProductDetailsPage(driver, wait, actions);
 
             landingPage.ClickOnConsentBtn();
 

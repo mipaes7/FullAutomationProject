@@ -135,8 +135,8 @@ namespace FullAutomationProject.PageObjects
 
         public void ClickSignUpCheckBoxes()
         {
-            IList<IWebElement> checkboxesList = driver.FindElements(checkboxes);
-            foreach (IWebElement checkbox in checkboxesList)
+            IList<IWebElement> checkboxList = driver.FindElements(checkboxes);
+            foreach (IWebElement checkbox in checkboxList)
             {
                 checkbox.Click();
             }

@@ -128,7 +128,7 @@ namespace FullAutomationProject.Tests
             paymentPage.ClickOnConfirmOrder();
 
             //Verify success message 'Your order has been placed successfully!'
-            //paymentPage.VerifySuccesfulPaymentAlert("Your order has been placed successfully!");
+            //paymentPage.VerifySuccessfulPaymentAlert("Your order has been placed successfully!");
 
             //Click 'Delete Account' button
             landingPage.ClickOnDeleteAccBtn();

@@ -73,10 +73,8 @@ namespace FullAutomationProject.PageObjects
             WriteOnElement(inputField, text);
         }
 
-        public void UploadFile()
+        public void UploadFile(string path = @"C:\Users\MPardal\Desktop\Captura de pantalla 2024-11-08 102748.png")
         {
-            string path = @"C:\Users\MPardal\Desktop\Captura de pantalla 2024-11-08 102748.png";
-
             WriteOnElement(uploadFileInput, path);
         }
 

@@ -28,7 +28,7 @@ namespace FullAutomationProject.Tests
             authPage.VerifySignUpBannerIsVisible();
 
             //Enter name and already registered email address
-            authPage.SignUpUser("miguel", ConfigurationManager.AppSettings["UserEmail"]);
+            authPage.SignUpUser("name", ConfigurationManager.AppSettings["UserEmail"]);
 
             //Click 'Signup' button
             authPage.ClickOnSignUpBtn();

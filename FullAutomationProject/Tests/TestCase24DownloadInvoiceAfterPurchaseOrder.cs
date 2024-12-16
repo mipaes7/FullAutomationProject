@@ -135,7 +135,7 @@ namespace FullAutomationProject.Tests
             paymentPage.ClickOnConfirmOrder();
 
             //Verify success message 'Your order has been placed successfully!'
-            //paymentPage.VerifySuccesfulPaymentAlert("Your order has been placed successfully!");
+            //paymentPage.VerifySuccessfulPaymentAlert("Your order has been placed successfully!");
 
             //Click 'Download Invoice' button and verify invoice is downloaded successfully
             paymentPage.DownloadInvoice();
@@ -146,7 +146,6 @@ namespace FullAutomationProject.Tests
 
             //Click 'Delete Account' button
             landingPage.ClickOnDeleteAccBtn();
-            //ClickOnElement(landingPage.deleteAccBtn);
 
             //Verify 'ACCOUNT DELETED!' and click 'Continue' button
             deletedAccPage.VerifyDeletedAccMsgIsVisible();

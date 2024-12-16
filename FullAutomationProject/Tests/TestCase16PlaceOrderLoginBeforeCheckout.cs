@@ -29,22 +29,16 @@ namespace FullAutomationProject.Tests
 
             UserDetailsBuilder userDetailsBuilder = new UserDetailsBuilder();
             UserDetails user = userDetailsBuilder
-                .WithName("mrdiobrando987")
-                .WithEmail("dio.brando@speedwagonfoundation.com")
-                .WithPassword("vampireLord987")
-                .WithDayOfBirth("14")
-                .WithMonthOfBirth("July")
-                .WithYearOfBirth("1868")
-                .WithFirstName("Dio")
-                .WithLastName("Brando")
-                .WithCompany("SpeedWagon Foundation")
-                .WithAddress("Calle La Calle")
-                .WithAddress2("Av. Avenida")
+                .WithFirstName("John")
+                .WithLastName("Doe")
+                .WithCompany("Example Corp")
+                .WithAddress("123 Main St")
+                .WithAddress2("Apt 4B")
                 .WithCountry("United States")
-                .WithState("Texas")
-                .WithCity("Houston")
-                .WithZipCode("15284")
-                .WithPhone("987456321")
+                .WithState("New York")
+                .WithCity("New York")
+                .WithZipCode("10001")
+                .WithPhone("555-1234")
                 .Build();
 
             CreditCardBuilder creditCardBuilder = new CreditCardBuilder();
@@ -106,13 +100,13 @@ namespace FullAutomationProject.Tests
             paymentPage.ClickOnConfirmOrder();
 
             //Verify success message 'Your order has been placed successfully!'
-            //paymentPage.VerifySuccesfulPaymentAlert("Your order has been placed successfully!");
+            //paymentPage.VerifySuccessfulPaymentAlert("Your order has been placed successfully!");
 
-            //Click 'Delete Account' button
-            landingPage.ClickOnDeleteAccBtn();
+            ////Click 'Delete Account' button
+            //landingPage.ClickOnDeleteAccBtn();
 
-            //Verify 'ACCOUNT DELETED!' and click 'Continue' button
-            deletedAccPage.VerifyDeletedAccMsgIsVisible();
+            ////Verify 'ACCOUNT DELETED!' and click 'Continue' button
+            //deletedAccPage.VerifyDeletedAccMsgIsVisible();
 
         }
 

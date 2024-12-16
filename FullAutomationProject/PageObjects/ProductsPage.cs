@@ -57,7 +57,6 @@ namespace FullAutomationProject.PageObjects
 
         public void ClickOnProductByIndex(int index)
         {
-            //preguntar si hay alguna manera de tener el localizador arriba
             ClickOnElement(By.CssSelector($"a[href='/product_details/{index}']"));
         }
 

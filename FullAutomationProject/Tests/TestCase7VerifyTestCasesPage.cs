@@ -25,7 +25,6 @@ namespace FullAutomationProject.Tests
             //Verify user is navigated to test cases page successfully
             testCasesPage.VerifyTestCasesPageUrl();
 
-            Thread.Sleep(3000);
         }
 
     }
